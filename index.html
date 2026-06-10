@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Inscrição confirmada — Workshop Devolvi Meu Crachá</title>
+  <meta name="description" content="Sua inscrição no Workshop Criando Minha Consultoria Lucrativa foi confirmada.">
+  <meta property="og:title" content="Inscrição confirmada — Workshop DMC">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;700;800&family=Merriweather:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ul, ol { list-style: none; }
+    a { text-decoration: none; }
+    img, svg { display: block; }
+    p { margin: 0; }
+
+    /* ============================================================
+       ROOT
+    ============================================================ */
+    :root {
+      --c-bg:            #102A2C;
+      --c-dark:          #0a1a1c;
+      --c-accent:        #B3A275;
+      --c-accent-hover:  #D4C59A;
+      --c-secondary:     #00FF5F;
+      --c-text-primary:  #F3F0E9;
+      --c-text-muted:    rgba(243, 240, 233, 0.7);
+      --glass-bg:        rgba(255, 255, 255, 0.03);
+      --glass-border:    rgba(255, 255, 255, 0.08);
+      --glass-blur:      blur(16px);
+      --font-display:    'Montserrat', sans-serif;
+      --font-body:       'Inter', sans-serif;
+      --font-serif:      'Merriweather', serif;
+      --container-w:     1200px;
+      --header-h:        65px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--c-bg);
+      background-image:
+        /* textura quente difusa — dá profundidade a todas as seções */
+        radial-gradient(ellipse 70% 50% at 75% 55%, rgba(179, 162, 117, 0.05), transparent 65%),
+        radial-gradient(circle at 15% 50%, rgba(179, 162, 117, 0.04), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(0, 255, 95, 0.025),   transparent 28%),
+        radial-gradient(ellipse 60% 40% at 50% 90%, rgba(10, 18, 20, 0.6), transparent 70%);
+      background-attachment: fixed;
+      color: var(--c-text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+    ============================================================ */
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 7vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .eyebrow {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--c-accent);
+    }
+    .body-lg {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--c-text-muted);
+    }
+    .caption {
+      font-size: 0.8125rem;
+      color: var(--c-text-muted);
+      line-height: 1.5;
+    }
+    .text-gradient {
+      background: linear-gradient(90deg, var(--c-accent) 0%, #F5F1E5 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .container {
+      max-width: var(--container-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ============================================================
+       FOCUS
+    ============================================================ */
+    :focus-visible {
+      outline: 2px solid var(--c-accent);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    /* ============================================================
+       BADGES
+    ============================================================ */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-family: var(--font-display);
+    }
+    .badge-accent {
+      background: rgba(179, 162, 117, 0.1);
+      color: var(--c-accent);
+      border: 1px solid rgba(179, 162, 117, 0.3);
+    }
+    .badge-green {
+      background: rgba(0, 255, 95, 0.1);
+      color: var(--c-secondary);
+      border: 1px solid rgba(0, 255, 95, 0.3);
+    }
+    .badge-green.pulse { animation: pulse-badge 2.5s infinite; }
+
+    /* ============================================================
+       GLASS PANEL
+    ============================================================ */
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-panel.green-glow {
+      border-color: rgba(0, 255, 95, 0.3);
+      box-shadow: 0 0 30px rgba(0, 255, 95, 0.08);
+    }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    .fadeSlideIn {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fadeSlideIn.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.3s; }
+    .delay-3 { transition-delay: 0.45s; }
+    .delay-4 { transition-delay: 0.6s; }
+
+    @keyframes floatBlob {
+      0%   { transform: translate(0, 0)     rotate(0deg)   scale(1);   }
+      100% { transform: translate(50px, 80px) rotate(360deg) scale(1.1); }
+    }
+    @keyframes bounce-chevron {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(8px); }
+    }
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0   rgba(0, 255, 95, 0.4); }
+      50%       { box-shadow: 0 0 0 12px rgba(0, 255, 95, 0);   }
+    }
+
+    /* ============================================================
+       LIQUID BLOB
+    ============================================================ */
+    .liquid-blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      top: -10%;
+      left: -10%;
+      background: rgba(179, 162, 117, 0.15);
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatBlob 20s infinite alternate ease-in-out;
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(16, 42, 44, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - var(--header-h));
+      display: flex;
+      align-items: center;
+      padding: 60px 0;
+      overflow: hidden;
+      background-image: url('ChatGPT%20Image%209_06_2026%2C%2015_09_22.png');
+      background-size: cover;
+      background-position: center;
+    }
+    /* Overlay leve: esquerda quase transparente → direita 0.32 de escurecimento */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(16, 42, 44, 0.02)  0%,
+        rgba(16, 42, 44, 0.30) 35%,
+        rgba(16, 42, 44, 0.32) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero .container {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+    .hero h1  { max-width: 820px; }
+    .hero .body-lg { max-width: 600px; }
+
+    .hero-scroll-indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      color: var(--c-accent);
+      margin-top: 8px;
+      animation: bounce-chevron 2.2s ease-in-out infinite;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* ============================================================
+       SECTION SURVEY
+    ============================================================ */
+    .section-survey {
+      padding: 80px 0;
+      position: relative;
+      background-image: url('ChatGPT%20Image%209_06_2026%2C%2015_35_35-convertido-de-png.webp');
+      background-size: cover;
+      background-position: center;
+    }
+    .section-survey::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(16, 42, 44, 0.02)  0%,
+        rgba(16, 42, 44, 0.30) 35%,
+        rgba(16, 42, 44, 0.32) 100%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+    .section-survey .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .survey-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .survey-header .eyebrow { margin-bottom: 16px; }
+    .survey-header h2       { margin-bottom: 16px; }
+    .survey-header .body-lg { max-width: 640px; margin: 0 auto; }
+
+    .survey-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .glass-panel.survey-iframe-wrapper {
+      padding: 0;
+      overflow: hidden;
+    }
+    .survey-iframe-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 700px;
+      border: 0;
+      border-radius: 23px;
+    }
+
+    .survey-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .survey-aside ul {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .survey-aside ul li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+      color: var(--c-text-primary);
+      line-height: 1.4;
+    }
+    .survey-aside ul li i {
+      color: var(--c-secondary);
+      font-size: 1.125rem;
+      width: 22px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       SECTION TIMELINE
+    ============================================================ */
+    .section-timeline {
+      padding: 80px 0;
+      position: relative;
+      background-image: url('ChatGPT%20Image%209_06_2026%2C%2015_50_26-convertido-de-png.png');
+      background-size: cover;
+      background-position: center;
+    }
+    .section-timeline::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(16, 42, 44, 0.02)  0%,
+        rgba(16, 42, 44, 0.30) 35%,
+        rgba(16, 42, 44, 0.32) 100%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+    .section-timeline .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .timeline-header .eyebrow { margin-bottom: 16px; }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+    /* Vertical connector */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 40px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      border-left: 1px dashed var(--glass-border);
+      z-index: 0;
+    }
+
+    .timeline-step {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-step:last-child { margin-bottom: 0; }
+
+    .step-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(179, 162, 117, 0.1);
+      border: 1px solid rgba(179, 162, 117, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--c-accent);
+      margin-top: 2px;
+    }
+
+    .step-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .step-content .badge { align-self: flex-start; }
+
+    /* Cards sólidos dobra 3 */
+    .section-timeline .glass-panel {
+      background: rgba(10, 26, 28, 0.82);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .section-timeline .glass-panel.green-glow {
+      background: rgba(10, 26, 28, 0.82);
+      border: 2px solid rgba(0, 255, 95, 0.45);
+      box-shadow: 0 0 30px rgba(0, 255, 95, 0.12);
+    }
+    .section-timeline .signature {
+      background: rgba(10, 26, 28, 0.82);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .timeline-step.completed { opacity: 0.7; }
+    .timeline-step.completed .step-icon {
+      background: rgba(0, 255, 95, 0.1);
+      border-color: rgba(0, 255, 95, 0.3);
+      color: var(--c-secondary);
+    }
+    .timeline-step.final .step-icon {
+      background: rgba(179, 162, 117, 0.15);
+      border-color: rgba(179, 162, 117, 0.5);
+      box-shadow: 0 0 16px rgba(179, 162, 117, 0.2);
+    }
+    .timeline-step h3 {
+      font-size: clamp(1rem, 2.5vw, 1.375rem);
+      color: var(--c-text-primary);
+    }
+    .timeline-step p {
+      color: var(--c-text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .signature {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 720px;
+      margin: 40px auto 0;
+      padding: 28px 32px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+    }
+    .signature-photo {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+    }
+    .signature-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--c-text-primary);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .signature-name {
+      color: var(--c-accent);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--glass-border);
+    }
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--c-accent);
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      color: var(--c-accent);
+      font-size: 1rem;
+      transition: color 0.3s, border-color 0.3s, transform 0.3s;
+    }
+
+    /* ============================================================
+       HOVER — pointer devices only
+    ============================================================ */
+    @media (hover: hover) {
+      .glass-panel:hover {
+        transform: translateY(-4px);
+        border-color: rgba(179, 162, 117, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+      .glass-panel.green-glow:hover {
+        transform: translateY(-4px);
+        border-color: rgba(0, 255, 95, 0.4);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 255, 95, 0.1);
+      }
+      .section-timeline .glass-panel:hover,
+      .section-timeline .signature:hover {
+        transform: translateY(-4px);
+        border-color: rgba(179, 162, 117, 0.5);
+        box-shadow: 0 8px 32px rgba(179, 162, 117, 0.28),
+                    0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .section-timeline .glass-panel.green-glow:hover {
+        transform: translateY(-4px);
+        border-color: rgba(0, 255, 95, 0.6);
+        box-shadow: 0 8px 32px rgba(179, 162, 117, 0.28),
+                    0 0 30px rgba(0, 255, 95, 0.18),
+                    0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      /* iframe wrapper: não levantar — evita jitter no scroll do iframe */
+      .glass-panel.survey-iframe-wrapper:hover {
+        transform: none;
+        border-color: var(--glass-border);
+        box-shadow: none;
+      }
+      .hero-scroll-indicator:hover {
+        border-color: rgba(179, 162, 117, 0.4);
+        background: rgba(179, 162, 117, 0.08);
+      }
+      .footer-social a:hover {
+        color: var(--c-accent-hover);
+        border-color: rgba(179, 162, 117, 0.4);
+        transform: scale(1.1);
+      }
+    }
+
+    /* ============================================================
+       TABLET (768px+)
+    ============================================================ */
+    @media (min-width: 768px) {
+      .body-lg { font-size: 1.125rem; }
+
+      .timeline-step { padding: 22px 24px; }
+      .step-icon { width: 46px; height: 46px; }
+      .timeline::before { left: 41px; }
+    }
+
+    /* ============================================================
+       DESKTOP (1024px+)
+    ============================================================ */
+    @media (min-width: 1024px) {
+      .container { padding: 0 24px; }
+
+      .glass-panel { padding: 40px; }
+      .glass-panel.survey-iframe-wrapper { padding: 0; }
+      .timeline-step { padding: 24px; }
+
+      .hero { padding: 100px 0; }
+
+      .survey-grid {
+        display: grid;
+        grid-template-columns: 65fr 35fr;
+        gap: 32px;
+        align-items: start;
+      }
+      .survey-iframe-wrapper iframe { height: 760px; }
+
+      .survey-aside {
+        position: sticky;
+        top: calc(var(--header-h) + 24px);
+      }
+    }
+
+    /* ============================================================
+       REDUCED MOTION
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fadeSlideIn        { opacity: 1; transform: none; transition: none; }
+      .liquid-blob        { animation: none; }
+      .badge-green.pulse  { animation: none; }
+      .hero-scroll-indicator { animation: none; }
+      .glass-panel        { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <img src="Worskshop %23Jun.png" alt="Workshop Devolvi Meu Crachá" class="logo-img">
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===========================
+         DOBRA 1 — HERO
+    =========================== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="liquid-blob" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-content">
+
+          <span class="badge badge-accent fadeSlideIn">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            INSCRIÇÃO CONFIRMADA
+          </span>
+
+          <!-- span#user-name fica vazio; JS adiciona ", Nome" ou mantém vazio -->
+          <h1 id="hero-heading" class="text-gradient fadeSlideIn delay-1">Bem-vindo<span id="user-name"></span>.</h1>
+
+          <p class="body-lg fadeSlideIn delay-2">
+            Antes de mais nada, preciso de 2 minutinhos seu: responde o questionário abaixo pra eu personalizar o workshop pra você e liberar seu e-book bônus "Os 15 Nichos Suculentos". Em seguida, é só entrar no grupo do WhatsApp — é por lá que eu vou mandar todas as informações importantes e o link de acesso ao workshop um dia antes do evento.
+          </p>
+
+          <a href="#questionario" class="hero-scroll-indicator fadeSlideIn delay-3" aria-label="Ir para o questionário">
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================
+         DOBRA 2 — QUESTIONÁRIO
+    =========================== -->
+    <section id="questionario" class="section-survey" aria-labelledby="survey-heading">
+      <div class="container">
+
+        <div class="survey-header">
+          <span class="eyebrow fadeSlideIn">01 · QUESTIONÁRIO</span>
+          <h2 id="survey-heading" class="fadeSlideIn delay-1">Responde rapidinho — 2 minutos.</h2>
+          <p class="body-lg fadeSlideIn delay-2">
+            É com base nessas respostas que eu personalizo o workshop pra você. Ao terminar, libera o acesso ao grupo do WhatsApp e o e-book bônus.
+          </p>
+        </div>
+
+        <div class="survey-grid">
+
+          <div class="glass-panel survey-iframe-wrapper fadeSlideIn delay-1">
+            <iframe
+              id="respondi-iframe"
+              src=""
+              title="Questionário do Workshop Criando Minha Consultoria Lucrativa"
+              loading="lazy"
+              allow="fullscreen"
+            ></iframe>
+          </div>
+
+          <aside class="glass-panel survey-aside fadeSlideIn delay-2" aria-label="Bônus disponíveis após o questionário">
+            <span class="badge badge-green pulse">BÔNUS LIBERADOS APÓS PREENCHER</span>
+            <ul>
+              <li>
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                Grupo oficial do WhatsApp do workshop
+              </li>
+              <li>
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                E-book "Os 15 Nichos Suculentos"
+              </li>
+            </ul>
+            <p class="caption">O link de acesso ao workshop é enviado dentro do grupo do WhatsApp, um dia antes do evento.</p>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================
+         DOBRA 3 — TIMELINE
+    =========================== -->
+    <section class="section-timeline" aria-labelledby="timeline-heading">
+      <div class="container">
+
+        <div class="timeline-header">
+          <span class="eyebrow fadeSlideIn">02 · O QUE VEM AGORA</span>
+          <h2 id="timeline-heading" class="text-gradient fadeSlideIn delay-1">Seus próximos passos</h2>
+        </div>
+
+        <ol class="timeline" aria-label="Próximos passos">
+
+          <li class="glass-panel timeline-step completed fadeSlideIn delay-1">
+            <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></div>
+            <div class="step-content">
+              <h3>Pagamento confirmado</h3>
+              <p>Sua vaga está garantida.</p>
+            </div>
+          </li>
+
+          <li class="glass-panel timeline-step current green-glow fadeSlideIn delay-2">
+            <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="step-content">
+              <span class="badge badge-green pulse">AGORA</span>
+              <h3>Preencher questionário</h3>
+              <p>Sobe um pouquinho e responde as 6 perguntas.</p>
+            </div>
+          </li>
+
+          <li class="glass-panel timeline-step fadeSlideIn delay-3">
+            <div class="step-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="step-content">
+              <span class="badge badge-accent">PRÓXIMO</span>
+              <h3>Entrar no grupo do WhatsApp</h3>
+              <p>O acesso ao grupo aparece ao final do questionário.</p>
+            </div>
+          </li>
+
+          <li class="glass-panel timeline-step fadeSlideIn delay-4">
+            <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-envelope-open-text"></i></div>
+            <div class="step-content">
+              <h3>Receber conteúdos e o link do workshop</h3>
+              <p>Tudo chega no grupo. O link do workshop é enviado um dia antes do evento.</p>
+            </div>
+          </li>
+
+          <li class="glass-panel timeline-step final fadeSlideIn">
+            <div class="step-icon" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="step-content">
+              <h3>Workshop ao vivo</h3>
+              <p>Te vejo lá.</p>
+            </div>
+          </li>
+
+        </ol>
+
+        <div class="signature fadeSlideIn">
+          <div class="signature-photo" role="img" aria-label="Foto da Juliana" style="background-image: url('Última turma antes do reajuste da Formação de Consultores.png'); background-size: cover; background-position: center;"></div>
+          <div>
+            <p class="signature-text">"Comprou bem. Agora é seguir o roteiro acima. Te espero no grupo."</p>
+            <p class="signature-name">— Juliana</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">DEVOLVI MEU CRACHÁ</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/devolvimeucracha/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/julianapaesgarcia/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"  aria-hidden="true"></i></a>
+        <a href="https://www.youtube.com/@DevolviMeuCracha" aria-label="YouTube" target="_blank" rel="noopener noreferrer"> <i class="fa-brands fa-youtube"   aria-hidden="true"></i></a>
+      </div>
+      <p class="caption">© 2026 Devolvi Meu Crachá. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── CONFIG ────────────────────────────────────────────────
+    // Edite aqui entre lançamentos
+    const CONFIG = {
+      RESPONDI_BASE_URL: 'https://form.respondi.app/leVfhi3g',
+      // WORKSHOP_DATE: 'XX de YYY de 2026'
+    };
+
+    // ── HELPERS ───────────────────────────────────────────────
+    function getQueryParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    // ── PERSONALIZAÇÃO DO HERO ────────────────────────────────
+    // Injeta ", PrimeiroNome" no span; sem param mantém "Bem-vindo."
+    function personalizeHero() {
+      const nomeSpan = document.getElementById('user-name');
+      if (!nomeSpan) return;
+
+      const nome = getQueryParam('nome');
+      if (nome && nome.trim().length > 0) {
+        const primeiroNome = nome.trim().split(' ')[0];
+        const formatado = primeiroNome.charAt(0).toUpperCase() + primeiroNome.slice(1).toLowerCase();
+        nomeSpan.textContent = ', ' + formatado;
+      }
+      // sem param → span fica vazio → h1 lê "Bem-vinda."
+    }
+
+    // ── IFRAME COM PARAMS ─────────────────────────────────────
+    function setupRespondiIframe() {
+      const iframe = document.getElementById('respondi-iframe');
+      if (!iframe) return;
+
+      const email  = getQueryParam('email');
+      const nome   = getQueryParam('nome');
+      const pedido = getQueryParam('pedido');
+
+      const url = new URL(CONFIG.RESPONDI_BASE_URL);
+      if (email)  url.searchParams.set('email',  email);
+      if (nome)   url.searchParams.set('nome',   nome);
+      if (pedido) url.searchParams.set('pedido', pedido);
+
+      iframe.src = url.toString();
+    }
+
+    // ── ANIMAÇÕES DE ENTRADA ──────────────────────────────────
+    function setupFadeAnimations() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.fadeSlideIn').forEach(el => observer.observe(el));
+    }
+
+    // ── INIT ──────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      personalizeHero();
+      setupRespondiIframe();
+      setupFadeAnimations();
+    });
+  </script>
+
+</body>
+</html>
