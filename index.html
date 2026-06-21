@@ -98,6 +98,21 @@
       line-height: 1.7;
       color: var(--c-text-muted);
     }
+    .subhead strong {
+      font-weight: 600;
+      color: var(--c-text-primary);
+    }
+
+    .eyebrow {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--c-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin: 0 0 16px 0;
+    }
 
     /* ============================================================
        LAYOUT
@@ -276,6 +291,65 @@
     }
 
     /* ============================================================
+       ACTION BLOCK + WHATSAPP CTA
+    ============================================================ */
+    .action-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .iframe-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, #00FF5F 0%, #25D366 100%);
+      color: #0a1a1c;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: pulse-glow 2.5s infinite;
+      width: fit-content;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-whatsapp i {
+      font-size: 1.25rem;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(0, 255, 95, 0.3);
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 95, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 14px rgba(0, 255, 95, 0);
+      }
+    }
+
+    .microcopy {
+      font-size: 0.875rem;
+      color: var(--c-text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
        HOVER — pointer devices only
     ============================================================ */
     @media (hover: hover) {
@@ -304,8 +378,8 @@
         gap: 64px;
         align-items: center;
       }
-      .content    { flex: 2; }
-      .iframe-wrapper { flex: 3; }
+      .content    { flex: 0 0 40%; }
+      .iframe-column { flex: 1; }
       .iframe-wrapper iframe { height: 640px; }
       .subhead { font-size: 1.125rem; }
     }
@@ -317,6 +391,8 @@
       .fadeSlideIn { opacity: 1; transform: none; transition: none; }
       .liquid-blob { animation: none; }
       .glass-panel { transition: none; }
+      .btn-whatsapp { animation: none; }
+      .btn-whatsapp:hover { transform: none; }
     }
   </style>
 </head>
@@ -340,16 +416,31 @@
             </span>
             <h1 class="text-gradient fadeSlideIn delay-1">Parabéns pela decisão!</h1>
             <p class="subhead fadeSlideIn delay-2">
-              Agora só falta responder rapinho o questionário pra eu personalizar o workshop pra você. Ao terminar, você terá acesso ao WhatsApp exclusivo e ao Guia de Nichos 2026!
+              A partir de agora, é simples: entra no <strong>grupo exclusivo do workshop no WhatsApp</strong> — é por lá que eu mando os conteúdos preparatórios, tiro dúvidas e libero o link de acesso ao vivo — e responde rapidinho o questionário ao lado pra eu te conhecer melhor.
             </p>
+
+            <div class="action-block fadeSlideIn delay-3">
+              <span class="eyebrow">01. Entre no grupo</span>
+              <a href="https://chat.whatsapp.com/FGpryF8eYPZBfXmaWR6Jhu"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                Entrar no grupo do WhatsApp
+              </a>
+              <p class="microcopy">Onde você recebe o link do ao vivo + Guia de Nichos 2026.</p>
+            </div>
           </div>
 
-          <div class="iframe-wrapper glass-panel fadeSlideIn delay-3">
-            <iframe
-              src="https://form.respondi.app/leVfhi3g"
-              title="Questionário do Workshop"
-              loading="lazy">
-            </iframe>
+          <div class="iframe-column fadeSlideIn delay-3">
+            <span class="eyebrow">02. Responda ao questionário</span>
+            <div class="iframe-wrapper glass-panel">
+              <iframe
+                src="https://form.respondi.app/leVfhi3g"
+                title="Questionário do Workshop"
+                loading="lazy">
+              </iframe>
+            </div>
           </div>
         </div>
       </div>
