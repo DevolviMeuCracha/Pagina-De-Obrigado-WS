@@ -296,38 +296,43 @@
     }
 
     /* ============================================================
-       MAIN
+       MAIN — single fold
     ============================================================ */
     main {
       flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 32px 0;
+    }
+
+    main > .container {
+      width: 100%;
+    }
+
+    .thanks-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
     }
 
     /* ============================================================
-       HERO
+       LEFT — WHATSAPP CTA
     ============================================================ */
-    .hero {
-      min-height: calc(100vh - 80px);
-      display: flex;
-      align-items: center;
-      padding: 60px 0;
-      position: relative;
-      z-index: 1;
-    }
-
     .hero-content {
-      max-width: 560px;
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 20px;
       align-items: flex-start;
     }
 
     .hero-content h1 {
       margin: 0;
+      font-size: clamp(2rem, 5.5vw, 3.5rem);
     }
 
     .hero-content .subhead {
-      max-width: 520px;
+      max-width: 480px;
       margin: 0;
     }
 
@@ -341,7 +346,7 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     .cta-microcopy {
@@ -353,32 +358,21 @@
     }
 
     /* ============================================================
-       SECTION — SURVEY
+       RIGHT — SURVEY
     ============================================================ */
-    .section-survey {
-      padding: 80px 0;
-      position: relative;
-      z-index: 1;
-      background: rgba(10, 26, 28, 0.5);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    .survey-col {
+      display: flex;
+      flex-direction: column;
     }
 
-    .section-survey .container {
-      max-width: 720px;
-      text-align: center;
+    .survey-col .eyebrow {
+      margin: 0 0 10px 0;
     }
 
-    .section-survey .eyebrow {
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .section-survey h2 {
-      margin: 0 0 16px 0;
+    .survey-title {
+      margin: 0 0 8px 0;
       font-family: var(--font-display);
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 3vw, 2rem);
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: -0.01em;
@@ -389,22 +383,17 @@
       color: transparent;
     }
 
-    .section-survey .survey-intro {
-      font-size: 1rem;
+    .survey-intro {
+      font-size: 0.9375rem;
       color: var(--c-text-muted);
-      line-height: 1.6;
-      margin: 0 auto 32px auto;
+      line-height: 1.5;
+      margin: 0 0 16px 0;
       max-width: 520px;
     }
 
-    .section-survey .survey-intro strong {
+    .survey-intro strong {
       color: var(--c-text-primary);
       font-weight: 600;
-    }
-
-    .section-survey .iframe-wrapper {
-      max-width: 580px;
-      margin: 0 auto;
     }
 
     /* ============================================================
@@ -417,7 +406,7 @@
     .iframe-wrapper iframe {
       display: block;
       width: 100%;
-      height: 600px;
+      height: 520px;
       border: 0;
       border-radius: 16px;
     }
@@ -498,8 +487,22 @@
         padding: 8px;
       }
 
+      .thanks-grid {
+        flex-direction: row;
+        gap: 56px;
+        align-items: center;
+      }
+
+      .hero-content {
+        flex: 0 0 42%;
+      }
+
+      .survey-col {
+        flex: 1;
+      }
+
       .iframe-wrapper iframe {
-        height: 640px;
+        height: clamp(440px, calc(100vh - 260px), 600px);
       }
 
       .subhead {
@@ -511,11 +514,6 @@
        MOBILE / TABLET (≤1023px)
     ============================================================ */
     @media (max-width: 1023px) {
-      .hero {
-        min-height: auto;
-        padding: 60px 0 80px;
-      }
-
       .hero-content {
         align-items: center;
         text-align: center;
@@ -523,6 +521,7 @@
 
       .hero-content .subhead {
         text-align: center;
+        max-width: none;
       }
 
       .cta-block {
@@ -535,8 +534,8 @@
         max-width: 340px;
       }
 
-      .section-survey {
-        padding: 60px 0;
+      .survey-col {
+        text-align: center;
       }
     }
 
@@ -581,8 +580,8 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container">
+      <div class="container">
+        <div class="thanks-grid">
           <div class="hero-content">
             <span class="badge badge-accent fadeSlideIn">
               <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Inscrição confirmada
@@ -601,23 +600,21 @@
               <p class="cta-microcopy">O canal oficial do workshop. Te vejo lá.</p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section class="section-survey">
-        <div class="container">
-          <span class="eyebrow fadeSlideIn">Antes de começar · 2 min</span>
-          <h2 class="fadeSlideIn delay-1">Conta um pouco sobre você</h2>
-          <p class="survey-intro fadeSlideIn delay-2">
-            Quanto mais eu te entender, melhor eu personalizo o workshop. Você sai com o <strong>Guia de Nichos
-              2026</strong> como bônus.
-          </p>
-          <div class="iframe-wrapper glass-panel fadeSlideIn delay-3">
-            <iframe src="https://form.respondi.app/leVfhi3g" title="Questionário do Workshop" loading="lazy">
-            </iframe>
+          <div class="survey-col fadeSlideIn delay-3">
+            <span class="eyebrow">Antes de começar · 2 min</span>
+            <h2 class="survey-title">Conta um pouco sobre você</h2>
+            <p class="survey-intro">
+              Quanto mais eu te entender, melhor eu personalizo o workshop. Você sai com o <strong>Guia de Nichos
+                2026</strong> como bônus.
+            </p>
+            <div class="iframe-wrapper glass-panel">
+              <iframe src="https://form.respondi.app/leVfhi3g" title="Questionário do Workshop" loading="lazy">
+              </iframe>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   </div>
 
