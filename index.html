@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -11,37 +12,61 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <style>
     /* ============================================================
        RESET
     ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    ul, ol { list-style: none; }
-    a { text-decoration: none; }
-    img, svg { display: block; }
-    p { margin: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    p {
+      margin: 0;
+    }
 
     /* ============================================================
        ROOT
     ============================================================ */
     :root {
-      --c-bg:            #102A2C;
-      --c-dark:          #0a1a1c;
-      --c-accent:        #B3A275;
-      --c-accent-hover:  #D4C59A;
-      --c-secondary:     #00FF5F;
-      --c-text-primary:  #F3F0E9;
-      --c-text-muted:    rgba(243, 240, 233, 0.7);
-      --glass-bg:        rgba(255, 255, 255, 0.03);
-      --glass-border:    rgba(255, 255, 255, 0.08);
-      --glass-blur:      blur(16px);
-      --font-display:    'Montserrat', sans-serif;
-      --font-body:       'Inter', sans-serif;
-      --container-w:     1200px;
-      --header-h:        65px;
+      --c-bg: #102A2C;
+      --c-dark: #0a1a1c;
+      --c-accent: #B3A275;
+      --c-accent-hover: #D4C59A;
+      --c-secondary: #00FF5F;
+      --c-text-primary: #F3F0E9;
+      --c-text-muted: rgba(243, 240, 233, 0.7);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-blur: blur(16px);
+      --font-display: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --container-w: 1200px;
+      --header-h: 65px;
     }
 
     /* ============================================================
@@ -98,6 +123,7 @@
       line-height: 1.7;
       color: var(--c-text-muted);
     }
+
     .subhead strong {
       font-weight: 600;
       color: var(--c-text-primary);
@@ -147,6 +173,7 @@
       letter-spacing: 0.15em;
       font-family: var(--font-display);
     }
+
     .badge-accent {
       background: rgba(179, 162, 117, 0.1);
       color: var(--c-accent);
@@ -166,8 +193,8 @@
       position: relative;
       overflow: hidden;
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* ============================================================
@@ -177,16 +204,34 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .fadeSlideIn.visible { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: 0.15s; }
-    .delay-2 { transition-delay: 0.3s; }
-    .delay-3 { transition-delay: 0.45s; }
+
+    .fadeSlideIn.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 {
+      transition-delay: 0.15s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.3s;
+    }
+
+    .delay-3 {
+      transition-delay: 0.45s;
+    }
 
     @keyframes floatBlob {
-      0%   { transform: translate(0, 0)       rotate(0deg)   scale(1);   }
-      100% { transform: translate(50px, 80px) rotate(360deg) scale(1.1); }
+      0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+
+      100% {
+        transform: translate(50px, 80px) rotate(360deg) scale(1.1);
+      }
     }
 
     /* ============================================================
@@ -233,12 +278,14 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
+
     header .container {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
     }
+
     .logo {
       font-family: var(--font-display);
       font-weight: 700;
@@ -253,27 +300,111 @@
     ============================================================ */
     main {
       flex: 1;
-      display: flex;
-      align-items: center;
-      padding: 40px 0;
-    }
-    main > .container {
-      width: 100%;
     }
 
     /* ============================================================
-       TWO-COLUMN LAYOUT
+       HERO
     ============================================================ */
-    .layout {
+    .hero {
+      min-height: calc(100vh - 80px);
       display: flex;
-      flex-direction: column;
-      gap: 28px;
+      align-items: center;
+      padding: 60px 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .content {
+    .hero-content {
+      max-width: 560px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .hero-content h1 {
+      margin: 0;
+    }
+
+    .hero-content .subhead {
+      max-width: 520px;
+      margin: 0;
+    }
+
+    .hero-content .subhead strong {
+      color: var(--c-text-primary);
+      font-weight: 600;
+    }
+
+    .cta-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .cta-microcopy {
+      font-size: 0.875rem;
+      color: var(--c-text-muted);
+      margin: 0;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ============================================================
+       SECTION — SURVEY
+    ============================================================ */
+    .section-survey {
+      padding: 80px 0;
+      position: relative;
+      z-index: 1;
+      background: rgba(10, 26, 28, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .section-survey .container {
+      max-width: 720px;
+      text-align: center;
+    }
+
+    .section-survey .eyebrow {
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-survey h2 {
+      margin: 0 0 16px 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      background: linear-gradient(90deg, var(--c-accent) 0%, #F5F1E5 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .section-survey .survey-intro {
+      font-size: 1rem;
+      color: var(--c-text-muted);
+      line-height: 1.6;
+      margin: 0 auto 32px auto;
+      max-width: 520px;
+    }
+
+    .section-survey .survey-intro strong {
+      color: var(--c-text-primary);
+      font-weight: 600;
+    }
+
+    .section-survey .iframe-wrapper {
+      max-width: 580px;
+      margin: 0 auto;
     }
 
     /* ============================================================
@@ -282,6 +413,7 @@
     .glass-panel.iframe-wrapper {
       padding: 8px;
     }
+
     .iframe-wrapper iframe {
       display: block;
       width: 100%;
@@ -291,20 +423,8 @@
     }
 
     /* ============================================================
-       ACTION BLOCK + WHATSAPP CTA
+       WHATSAPP CTA
     ============================================================ */
-    .action-block {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .iframe-column {
-      display: flex;
-      flex-direction: column;
-    }
-
     .btn-whatsapp {
       display: inline-flex;
       align-items: center;
@@ -334,19 +454,15 @@
     }
 
     @keyframes pulse-glow {
-      0%, 100% {
+
+      0%,
+      100% {
         box-shadow: 0 0 0 0 rgba(0, 255, 95, 0.4);
       }
+
       50% {
         box-shadow: 0 0 0 14px rgba(0, 255, 95, 0);
       }
-    }
-
-    .microcopy {
-      font-size: 0.875rem;
-      color: var(--c-text-muted);
-      margin: 0;
-      line-height: 1.5;
     }
 
     /* ============================================================
@@ -358,6 +474,7 @@
         border-color: rgba(179, 162, 117, 0.3);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       }
+
       .glass-panel.iframe-wrapper:hover {
         transform: none;
         border-color: var(--glass-border);
@@ -369,33 +486,89 @@
        DESKTOP (1024px+)
     ============================================================ */
     @media (min-width: 1024px) {
-      .container { padding: 0 24px; }
-      .glass-panel { padding: 40px; }
-      .glass-panel.iframe-wrapper { padding: 8px; }
+      .container {
+        padding: 0 24px;
+      }
 
-      .layout {
-        flex-direction: row;
-        gap: 64px;
+      .glass-panel {
+        padding: 40px;
+      }
+
+      .glass-panel.iframe-wrapper {
+        padding: 8px;
+      }
+
+      .iframe-wrapper iframe {
+        height: 640px;
+      }
+
+      .subhead {
+        font-size: 1.125rem;
+      }
+    }
+
+    /* ============================================================
+       MOBILE / TABLET (≤1023px)
+    ============================================================ */
+    @media (max-width: 1023px) {
+      .hero {
+        min-height: auto;
+        padding: 60px 0 80px;
+      }
+
+      .hero-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-content .subhead {
+        text-align: center;
+      }
+
+      .cta-block {
         align-items: center;
       }
-      .content    { flex: 0 0 40%; }
-      .iframe-column { flex: 1; }
-      .iframe-wrapper iframe { height: 640px; }
-      .subhead { font-size: 1.125rem; }
+
+      .btn-whatsapp {
+        width: 100%;
+        justify-content: center;
+        max-width: 340px;
+      }
+
+      .section-survey {
+        padding: 60px 0;
+      }
     }
 
     /* ============================================================
        REDUCED MOTION
     ============================================================ */
     @media (prefers-reduced-motion: reduce) {
-      .fadeSlideIn { opacity: 1; transform: none; transition: none; }
-      .liquid-blob { animation: none; }
-      .glass-panel { transition: none; }
-      .btn-whatsapp { animation: none; }
-      .btn-whatsapp:hover { transform: none; }
+      .fadeSlideIn {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .liquid-blob {
+        animation: none;
+      }
+
+      .glass-panel {
+        transition: none;
+      }
+
+      .btn-whatsapp {
+        animation: none;
+      }
+
+      .btn-whatsapp:hover {
+        transform: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div class="liquid-blob" aria-hidden="true"></div>
@@ -408,42 +581,43 @@
     </header>
 
     <main>
-      <div class="container">
-        <div class="layout">
-          <div class="content">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
             <span class="badge badge-accent fadeSlideIn">
               <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Inscrição confirmada
             </span>
-            <h1 class="text-gradient fadeSlideIn delay-1">Parabéns pela decisão!</h1>
+            <h1 class="text-gradient fadeSlideIn delay-1">Bem-vindo à sua decisão.</h1>
             <p class="subhead fadeSlideIn delay-2">
-              A partir de agora, é simples: entra no <strong>grupo exclusivo do workshop no WhatsApp</strong> — é por lá que eu mando os conteúdos preparatórios, tiro dúvidas e libero o link de acesso ao vivo — e responde rapidinho o questionário ao lado pra eu te conhecer melhor.
+              É muito importante você estar no <strong>grupo do WhatsApp</strong>. É por lá que eu mando os conteúdos
+              preparatórios e o link de acesso ao vivo.
             </p>
-
-            <div class="action-block fadeSlideIn delay-3">
-              <span class="eyebrow">01. Entre no grupo</span>
-              <a href="https://chat.whatsapp.com/FGpryF8eYPZBfXmaWR6Jhu"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="btn-whatsapp">
+            <div class="cta-block fadeSlideIn delay-3">
+              <a href="https://chat.whatsapp.com/FGpryF8eYPZBfXmaWR6Jhu" target="_blank" rel="noopener noreferrer"
+                class="btn-whatsapp">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                Entrar no grupo do WhatsApp
+                Entrar no grupo agora
               </a>
-              <p class="microcopy">Onde você recebe o link do ao vivo + Guia de Nichos 2026.</p>
-            </div>
-          </div>
-
-          <div class="iframe-column fadeSlideIn delay-3">
-            <span class="eyebrow">02. Responda ao questionário</span>
-            <div class="iframe-wrapper glass-panel">
-              <iframe
-                src="https://form.respondi.app/leVfhi3g"
-                title="Questionário do Workshop"
-                loading="lazy">
-              </iframe>
+              <p class="cta-microcopy">O canal oficial do workshop. Te vejo lá.</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section class="section-survey">
+        <div class="container">
+          <span class="eyebrow fadeSlideIn">Antes de começar · 2 min</span>
+          <h2 class="fadeSlideIn delay-1">Conta um pouco sobre você</h2>
+          <p class="survey-intro fadeSlideIn delay-2">
+            Quanto mais eu te entender, melhor eu personalizo o workshop. Você sai com o <strong>Guia de Nichos
+              2026</strong> como bônus.
+          </p>
+          <div class="iframe-wrapper glass-panel fadeSlideIn delay-3">
+            <iframe src="https://form.respondi.app/leVfhi3g" title="Questionário do Workshop" loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 
@@ -465,4 +639,5 @@
   </script>
 
 </body>
+
 </html>
