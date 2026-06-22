@@ -438,7 +438,7 @@
       padding: 0;
       margin: -1px;
       overflow: hidden;
-      clip: rect(0, 0, 0, 0);
+      clip-path: inset(50%);
       white-space: nowrap;
       border: 0;
     }
@@ -511,16 +511,6 @@
 
     .step.is-active {
       display: flex;
-    }
-
-    .step-eyebrow {
-      font-family: var(--font-display);
-      font-size: 0.625rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--c-accent);
-      margin-bottom: 12px;
     }
 
     .step-title {
@@ -925,7 +915,6 @@
 
               <!-- Tela 1 — E-mail -->
               <fieldset class="step is-active" data-step="1">
-                <span class="step-eyebrow" aria-hidden="true">Pergunta 1 de 7</span>
                 <legend class="step-title">Qual seu melhor e-mail?</legend>
                 <div class="step-body">
                   <label for="email" class="sr-only">Qual seu melhor e-mail?</label>
@@ -939,7 +928,6 @@
 
               <!-- Tela 2 — Faixa Etária -->
               <fieldset class="step" data-step="2">
-                <span class="step-eyebrow" aria-hidden="true">Pergunta 2 de 7</span>
                 <legend class="step-title">Qual é sua faixa etária?</legend>
                 <div class="step-body">
                   <div class="opt-group" role="radiogroup" data-key="faixaEtaria" aria-label="Qual é sua faixa etária?">
@@ -958,7 +946,6 @@
 
               <!-- Tela 3 — Gênero -->
               <fieldset class="step" data-step="3">
-                <span class="step-eyebrow" aria-hidden="true">Pergunta 3 de 7</span>
                 <legend class="step-title">Com qual gênero você se identifica?</legend>
                 <div class="step-body">
                   <div class="opt-group" role="radiogroup" data-key="genero" aria-label="Com qual gênero você se identifica?">
@@ -974,7 +961,6 @@
 
               <!-- Tela 4 — Faixa Salarial -->
               <fieldset class="step" data-step="4">
-                <span class="step-eyebrow" aria-hidden="true">Pergunta 4 de 7</span>
                 <legend class="step-title">Qual é a sua faixa salarial no trabalho mais recente, ou qual seu faturamento mensal caso já tenha sua Mentoria/Consultoria?</legend>
                 <div class="step-body">
                   <div class="opt-group" role="radiogroup" data-key="faixaSalarial" aria-label="Qual é a sua faixa salarial?">
@@ -992,7 +978,6 @@
 
               <!-- Tela 5 — Situação -->
               <fieldset class="step" data-step="5">
-                <span class="step-eyebrow" aria-hidden="true">Pergunta 5 de 7</span>
                 <legend class="step-title">Em qual das situações abaixo você se enquadra melhor:</legend>
                 <div class="step-body">
                   <div class="opt-group" role="radiogroup" data-key="situacao" aria-label="Em qual das situações abaixo você se enquadra melhor?">
@@ -1011,7 +996,6 @@
 
               <!-- Tela 6 — Comprometimento -->
               <fieldset class="step" data-step="6">
-                <span class="step-eyebrow" aria-hidden="true">Pergunta 6 de 7</span>
                 <legend class="step-title">Quão comprometido você está em ter seu negócio próprio de Consultoria faturando de R$30 a R$50 mil por mês ou mais com previsibilidade?</legend>
                 <div class="step-body">
                   <div class="opt-group" role="radiogroup" data-key="comprometimento" aria-label="Quão comprometido você está?">
@@ -1027,7 +1011,6 @@
 
               <!-- Tela 7 — Expectativa (opcional) -->
               <fieldset class="step" data-step="7">
-                <span class="step-eyebrow" aria-hidden="true">Pergunta 7 de 7</span>
                 <legend class="step-title">E pra terminar: o que você mais espera desse workshop?</legend>
                 <p class="step-sub">(opcional — pode pular se preferir)</p>
                 <div class="step-body">
