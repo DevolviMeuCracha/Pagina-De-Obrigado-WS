@@ -428,24 +428,324 @@
       font-weight: 600;
     }
 
-    .section-survey .iframe-wrapper {
-      max-width: 480px;
-      margin: 0 auto;
+    /* ============================================================
+       NATIVE FORM — utilitário sr-only
+    ============================================================ */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ============================================================
-       IFRAME WRAPPER
+       FORM SHELL
     ============================================================ */
-    .glass-panel.iframe-wrapper {
-      padding: 8px;
+    .section-survey .survey-shell {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 28px;
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
     }
 
-    .iframe-wrapper iframe {
-      display: block;
-      width: 100%;
-      height: 520px;
+    /* ============================================================
+       BARRA DE PROGRESSO
+    ============================================================ */
+    .form-progress {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .form-progress-track {
+      flex: 1;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .form-progress-fill {
+      height: 100%;
+      width: 14.2857%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--c-accent), #D4C59A);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .form-progress-label {
+      font-size: 0.6875rem;
+      color: var(--c-text-muted);
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+      font-family: var(--font-body);
+    }
+
+    /* ============================================================
+       FORM + STEPS
+    ============================================================ */
+    .survey-form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .step {
+      display: none;
+      flex-direction: column;
+      flex: 1;
       border: 0;
-      border-radius: 16px;
+      padding: 0;
+      margin: 0;
+      min-width: 0;
+    }
+
+    .step.is-active {
+      display: flex;
+    }
+
+    .step-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--c-accent);
+      margin-bottom: 12px;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: var(--c-text-primary);
+      line-height: 1.3;
+      padding: 0;
+      margin: 0 0 6px 0;
+    }
+
+    .step-sub {
+      font-size: 0.8125rem;
+      color: var(--c-text-muted);
+      margin: 0;
+    }
+
+    .step-body {
+      flex: 1;
+      margin-top: 18px;
+    }
+
+    /* ============================================================
+       OPÇÕES SINGLE-CHOICE
+    ============================================================ */
+    .opt-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      min-height: 44px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--c-text-primary);
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .opt:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .opt-letter {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(179, 162, 117, 0.1);
+      border: 1px solid rgba(179, 162, 117, 0.3);
+      color: var(--c-accent);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.8125rem;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .opt-text {
+      font-size: 0.875rem;
+      color: rgba(243, 240, 233, 0.7);
+      line-height: 1.4;
+    }
+
+    .opt.is-selected {
+      background: rgba(179, 162, 117, 0.12);
+      border-color: rgba(179, 162, 117, 0.4);
+    }
+
+    .opt.is-selected .opt-letter {
+      background: var(--c-accent);
+      color: var(--c-dark);
+      border-color: var(--c-accent);
+    }
+
+    .opt.is-selected .opt-text {
+      color: var(--c-text-primary);
+    }
+
+    /* ============================================================
+       INPUTS DE TEXTO
+    ============================================================ */
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--c-text-primary);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(243, 240, 233, 0.5);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: rgba(179, 162, 117, 0.6);
+      box-shadow: 0 0 0 3px rgba(179, 162, 117, 0.15);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 96px;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       NAVEGAÇÃO
+    ============================================================ */
+    .step-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 24px;
+      margin-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .step-nav.nav-end {
+      justify-content: flex-end;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--c-text-muted);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-back:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
+
+    .btn-next {
+      background: var(--c-accent);
+      color: var(--c-dark);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 12px 28px;
+      border: 0;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-next:hover:not(:disabled) {
+      background: var(--c-accent-hover);
+      transform: scale(1.02);
+    }
+
+    .btn-next:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ============================================================
+       TELA FINAL (placeholder)
+    ============================================================ */
+    .step-final {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .final-title {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--c-text-primary);
+      margin-bottom: 10px;
+    }
+
+    .final-sub {
+      font-size: 0.8125rem;
+      color: var(--c-text-muted);
+      margin-bottom: 20px;
+      max-width: 340px;
+    }
+
+    .final-json {
+      width: 100%;
+      text-align: left;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+      font-size: 0.75rem;
+      color: var(--c-text-muted);
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
     }
 
     /* ============================================================
@@ -489,19 +789,10 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       }
 
-      .glass-panel.iframe-wrapper:hover {
+      .glass-panel.survey-shell:hover {
         transform: none;
         border-color: var(--glass-border);
         box-shadow: none;
-      }
-    }
-
-    /* ============================================================
-       DESKTOP (1024px+)
-    ============================================================ */
-    @media (min-width: 1024px) {
-      .glass-panel.iframe-wrapper {
-        padding: 8px;
       }
     }
 
@@ -520,6 +811,31 @@
 
       .section-survey {
         padding: 32px 0 60px;
+      }
+
+      .section-survey .survey-shell {
+        padding: 20px;
+        min-height: 420px;
+      }
+
+      .step-title {
+        font-size: 1.0625rem;
+      }
+
+      .opt-text {
+        font-size: 0.8125rem;
+      }
+
+      .opt {
+        padding: 13px 14px;
+      }
+
+      .btn-next {
+        padding: 12px 22px;
+      }
+
+      .btn-back {
+        padding: 10px 16px;
       }
     }
 
@@ -542,6 +858,14 @@
       }
 
       .btn-whatsapp:hover {
+        transform: none;
+      }
+
+      .form-progress-fill {
+        transition: none;
+      }
+
+      .btn-next:hover {
         transform: none;
       }
     }
@@ -589,8 +913,144 @@
             Quanto mais eu te entender, melhor eu personalizo o workshop. Você sai com o <strong>Guia de Nichos
               2026</strong> como bônus.
           </p>
-          <div class="iframe-wrapper glass-panel fadeSlideIn delay-3">
-            <iframe src="https://form.respondi.app/leVfhi3g" title="Questionário do Workshop" loading="lazy"></iframe>
+          <div class="survey-shell glass-panel fadeSlideIn delay-3">
+            <div class="form-progress">
+              <div class="form-progress-track">
+                <div class="form-progress-fill" id="progressFill"></div>
+              </div>
+              <span class="form-progress-label" id="progressLabel" aria-live="polite">Pergunta 1 de 7</span>
+            </div>
+
+            <form id="surveyForm" class="survey-form" novalidate>
+
+              <!-- Tela 1 — E-mail -->
+              <fieldset class="step is-active" data-step="1">
+                <span class="step-eyebrow" aria-hidden="true">Pergunta 1 de 7</span>
+                <legend class="step-title">Qual seu melhor e-mail?</legend>
+                <div class="step-body">
+                  <label for="email" class="sr-only">Qual seu melhor e-mail?</label>
+                  <input type="email" id="email" class="form-input" placeholder="exemplo@exemplo.com"
+                    autocomplete="email" inputmode="email" spellcheck="false">
+                </div>
+                <div class="step-nav nav-end">
+                  <button type="button" class="btn-next" data-action="next" id="step1Next" disabled>Próximo</button>
+                </div>
+              </fieldset>
+
+              <!-- Tela 2 — Faixa Etária -->
+              <fieldset class="step" data-step="2">
+                <span class="step-eyebrow" aria-hidden="true">Pergunta 2 de 7</span>
+                <legend class="step-title">Qual é sua faixa etária?</legend>
+                <div class="step-body">
+                  <div class="opt-group" role="radiogroup" data-key="faixaEtaria" aria-label="Qual é sua faixa etária?">
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Até 25 anos"><span class="opt-letter" aria-hidden="true">A</span><span class="opt-text">Até 25 anos</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="26 a 30 anos"><span class="opt-letter" aria-hidden="true">B</span><span class="opt-text">26 a 30 anos</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="31 a 35 anos"><span class="opt-letter" aria-hidden="true">C</span><span class="opt-text">31 a 35 anos</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="36 a 40 anos"><span class="opt-letter" aria-hidden="true">D</span><span class="opt-text">36 a 40 anos</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="41 a 45 anos"><span class="opt-letter" aria-hidden="true">E</span><span class="opt-text">41 a 45 anos</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Acima de 46 anos"><span class="opt-letter" aria-hidden="true">F</span><span class="opt-text">Acima de 46 anos</span></button>
+                  </div>
+                </div>
+                <div class="step-nav">
+                  <button type="button" class="btn-back" data-action="prev">Voltar</button>
+                </div>
+              </fieldset>
+
+              <!-- Tela 3 — Gênero -->
+              <fieldset class="step" data-step="3">
+                <span class="step-eyebrow" aria-hidden="true">Pergunta 3 de 7</span>
+                <legend class="step-title">Com qual gênero você se identifica?</legend>
+                <div class="step-body">
+                  <div class="opt-group" role="radiogroup" data-key="genero" aria-label="Com qual gênero você se identifica?">
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Feminino"><span class="opt-letter" aria-hidden="true">A</span><span class="opt-text">Feminino</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Masculino"><span class="opt-letter" aria-hidden="true">B</span><span class="opt-text">Masculino</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Outro/Não quero responder"><span class="opt-letter" aria-hidden="true">C</span><span class="opt-text">Outro/Não quero responder</span></button>
+                  </div>
+                </div>
+                <div class="step-nav">
+                  <button type="button" class="btn-back" data-action="prev">Voltar</button>
+                </div>
+              </fieldset>
+
+              <!-- Tela 4 — Faixa Salarial -->
+              <fieldset class="step" data-step="4">
+                <span class="step-eyebrow" aria-hidden="true">Pergunta 4 de 7</span>
+                <legend class="step-title">Qual é a sua faixa salarial no trabalho mais recente, ou qual seu faturamento mensal caso já tenha sua Mentoria/Consultoria?</legend>
+                <div class="step-body">
+                  <div class="opt-group" role="radiogroup" data-key="faixaSalarial" aria-label="Qual é a sua faixa salarial?">
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Até R$10 mil"><span class="opt-letter" aria-hidden="true">A</span><span class="opt-text">Até R$10 mil</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="De R$10,1 mil a R$15 mil"><span class="opt-letter" aria-hidden="true">B</span><span class="opt-text">De R$10,1 mil a R$15 mil</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="De R$15,1 mil a R$20 mil"><span class="opt-letter" aria-hidden="true">C</span><span class="opt-text">De R$15,1 mil a R$20 mil</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="De R$20,1 mil a R$25 mil"><span class="opt-letter" aria-hidden="true">D</span><span class="opt-text">De R$20,1 mil a R$25 mil</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Acima de R$25 mil"><span class="opt-letter" aria-hidden="true">E</span><span class="opt-text">Acima de R$25 mil</span></button>
+                  </div>
+                </div>
+                <div class="step-nav">
+                  <button type="button" class="btn-back" data-action="prev">Voltar</button>
+                </div>
+              </fieldset>
+
+              <!-- Tela 5 — Situação -->
+              <fieldset class="step" data-step="5">
+                <span class="step-eyebrow" aria-hidden="true">Pergunta 5 de 7</span>
+                <legend class="step-title">Em qual das situações abaixo você se enquadra melhor:</legend>
+                <div class="step-body">
+                  <div class="opt-group" role="radiogroup" data-key="situacao" aria-label="Em qual das situações abaixo você se enquadra melhor?">
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Já tenho minha Mentoria e quero ajuda para escalar"><span class="opt-letter" aria-hidden="true">A</span><span class="opt-text">Já tenho minha Mentoria e quero ajuda para escalar</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Já tenho minha Consultoria e quero ajuda para escalar"><span class="opt-letter" aria-hidden="true">B</span><span class="opt-text">Já tenho minha Consultoria e quero ajuda para escalar</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Já decidi que quero abrir minha Mentoria/Consultoria, ainda não saí do corporativo e quero ajuda para estruturar e colocar meu negócio no ar"><span class="opt-letter" aria-hidden="true">C</span><span class="opt-text">Já decidi que quero abrir minha Mentoria/Consultoria, ainda não saí do corporativo e quero ajuda para estruturar e colocar meu negócio no ar</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Já decidi que quero abrir minha Mentoria/Consultoria, já saí do corporativo e quero ajuda para estruturar e colocar meu negócio no ar"><span class="opt-letter" aria-hidden="true">D</span><span class="opt-text">Já decidi que quero abrir minha Mentoria/Consultoria, já saí do corporativo e quero ajuda para estruturar e colocar meu negócio no ar</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Já decidi que quero abrir minha Mentoria/Consultoria, sou Empresário e quero ajuda para estruturar e colocar meu negócio no ar"><span class="opt-letter" aria-hidden="true">E</span><span class="opt-text">Já decidi que quero abrir minha Mentoria/Consultoria, sou Empresário e quero ajuda para estruturar e colocar meu negócio no ar</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Ainda estou pesquisando, não decidi se quero mesmo abrir minha Mentoria/Consultoria"><span class="opt-letter" aria-hidden="true">F</span><span class="opt-text">Ainda estou pesquisando, não decidi se quero mesmo abrir minha Mentoria/Consultoria</span></button>
+                  </div>
+                </div>
+                <div class="step-nav">
+                  <button type="button" class="btn-back" data-action="prev">Voltar</button>
+                </div>
+              </fieldset>
+
+              <!-- Tela 6 — Comprometimento -->
+              <fieldset class="step" data-step="6">
+                <span class="step-eyebrow" aria-hidden="true">Pergunta 6 de 7</span>
+                <legend class="step-title">Quão comprometido você está em ter seu negócio próprio de Consultoria faturando de R$30 a R$50 mil por mês ou mais com previsibilidade?</legend>
+                <div class="step-body">
+                  <div class="opt-group" role="radiogroup" data-key="comprometimento" aria-label="Quão comprometido você está?">
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="É minha prioridade: quero que aconteça ainda este ano"><span class="opt-letter" aria-hidden="true">A</span><span class="opt-text">É minha prioridade: quero que aconteça ainda este ano</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="É um projeto, e quero que isso aconteça nos próximos 2 a 4 anos"><span class="opt-letter" aria-hidden="true">B</span><span class="opt-text">É um projeto, e quero que isso aconteça nos próximos 2 a 4 anos</span></button>
+                    <button type="button" class="opt" role="radio" aria-checked="false" data-value="Ainda é uma ideia, estou explorando possibilidades"><span class="opt-letter" aria-hidden="true">C</span><span class="opt-text">Ainda é uma ideia, estou explorando possibilidades</span></button>
+                  </div>
+                </div>
+                <div class="step-nav">
+                  <button type="button" class="btn-back" data-action="prev">Voltar</button>
+                </div>
+              </fieldset>
+
+              <!-- Tela 7 — Expectativa (opcional) -->
+              <fieldset class="step" data-step="7">
+                <span class="step-eyebrow" aria-hidden="true">Pergunta 7 de 7</span>
+                <legend class="step-title">E pra terminar: o que você mais espera desse workshop?</legend>
+                <p class="step-sub">(opcional — pode pular se preferir)</p>
+                <div class="step-body">
+                  <label for="expectativa" class="sr-only">O que você mais espera desse workshop?</label>
+                  <textarea id="expectativa" class="form-textarea" rows="4" placeholder="Sua resposta..."></textarea>
+                </div>
+                <div class="step-nav">
+                  <button type="button" class="btn-back" data-action="prev">Voltar</button>
+                  <div class="nav-right">
+                    <button type="button" class="btn-back" data-action="skip">Pular</button>
+                    <button type="button" class="btn-next" data-action="submit">Enviar</button>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Tela 8 — Confirmação simulada (placeholder Sprint 4) -->
+              <div class="step step-final" data-step="8" role="status">
+                <p class="final-title">Resposta registrada! ✓</p>
+                <p class="final-sub">(Esta é uma tela placeholder — será substituída na próxima sprint pelo envio real e tela de obrigado final)</p>
+                <pre class="final-json" id="finalJson"></pre>
+              </div>
+
+            </form>
           </div>
         </div>
       </section>
@@ -611,6 +1071,209 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
       document.querySelectorAll('.fadeSlideIn').forEach(el => observer.observe(el));
+    })();
+
+    /* ============================================================
+       FORM NATIVO MULTI-STEP (Sprint 2 — estrutura visual)
+    ============================================================ */
+    (function () {
+      const formState = {
+        email: '',
+        faixaEtaria: '',
+        genero: '',
+        faixaSalarial: '',
+        situacao: '',
+        comprometimento: '',
+        expectativa: ''
+      };
+
+      let currentStep = 1;
+      const totalSteps = 7;
+      let busy = false;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const form = document.getElementById('surveyForm');
+      const progressFill = document.getElementById('progressFill');
+      const progressLabel = document.getElementById('progressLabel');
+      const progressWrap = document.querySelector('.form-progress');
+      const emailInput = document.getElementById('email');
+      const expectativaInput = document.getElementById('expectativa');
+      const step1Next = document.getElementById('step1Next');
+      const finalJson = document.getElementById('finalJson');
+
+      // Mapa step -> chave do formState (telas single-choice)
+      const stepKey = {
+        2: 'faixaEtaria',
+        3: 'genero',
+        4: 'faixaSalarial',
+        5: 'situacao',
+        6: 'comprometimento'
+      };
+
+      // Cache de elementos de cada tela (índice 1..8)
+      const stepEls = {};
+      form.querySelectorAll('.step').forEach(el => {
+        stepEls[Number(el.dataset.step)] = el;
+      });
+
+      /* ---------- Helpers ---------- */
+      function updateProgress(n) {
+        progressFill.style.width = ((n / totalSteps) * 100) + '%';
+        progressLabel.textContent = 'Pergunta ' + n + ' de ' + totalSteps;
+      }
+
+      function markSelection(key) {
+        const group = form.querySelector('[data-key="' + key + '"]');
+        if (!group) return;
+        group.querySelectorAll('.opt').forEach(opt => {
+          const sel = opt.dataset.value === formState[key];
+          opt.classList.toggle('is-selected', sel);
+          opt.setAttribute('aria-checked', sel ? 'true' : 'false');
+        });
+      }
+
+      function updateStep1Btn() {
+        step1Next.disabled = !emailRegex.test(emailInput.value.trim());
+      }
+
+      // Restaura a UI da tela com o que estiver salvo em formState
+      function restoreStep(n) {
+        if (n === 1) {
+          emailInput.value = formState.email;
+          updateStep1Btn();
+        } else if (n === 7) {
+          expectativaInput.value = formState.expectativa;
+        } else if (stepKey[n]) {
+          markSelection(stepKey[n]);
+        }
+      }
+
+      function focusStep(n) {
+        const el = stepEls[n];
+        const field = el.querySelector('input, textarea');
+        if (field) field.focus();
+      }
+
+      function afterShown(n, doFocus) {
+        if (n > totalSteps) {
+          progressWrap.style.display = 'none';
+          finalJson.textContent = JSON.stringify(formState, null, 2);
+          return;
+        }
+        progressWrap.style.display = '';
+        updateProgress(n);
+        restoreStep(n);
+        if (doFocus) focusStep(n);
+      }
+
+      /* ---------- Navegação animada ---------- */
+      function goToStep(n, dir) {
+        if (busy || n === currentStep) return;
+        const current = stepEls[currentStep];
+        const target = stepEls[n];
+        if (!target) return;
+        dir = dir || (n > currentStep ? 'fwd' : 'back');
+
+        if (reduceMotion) {
+          current.classList.remove('is-active');
+          target.classList.add('is-active');
+          currentStep = n;
+          afterShown(n, true);
+          return;
+        }
+
+        busy = true;
+        current.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        current.style.opacity = '0';
+        current.style.transform = 'translateX(' + (dir === 'fwd' ? '-20px' : '20px') + ')';
+
+        setTimeout(() => {
+          current.classList.remove('is-active');
+          current.style.transition = '';
+          current.style.opacity = '';
+          current.style.transform = '';
+
+          target.classList.add('is-active');
+          target.style.transition = 'none';
+          target.style.opacity = '0';
+          target.style.transform = 'translateX(' + (dir === 'fwd' ? '20px' : '-20px') + ')';
+          void target.offsetWidth; // reflow
+          target.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          target.style.opacity = '1';
+          target.style.transform = 'translateX(0)';
+
+          currentStep = n;
+          afterShown(n, true);
+          busy = false;
+        }, 200);
+      }
+
+      /* ---------- Validação por tela ---------- */
+      function validateStep(n) {
+        if (n === 1) return emailRegex.test(formState.email.trim());
+        if (stepKey[n]) return formState[stepKey[n]] !== '';
+        if (n === 7) return true;
+        return true;
+      }
+
+      function next() {
+        if (validateStep(currentStep)) goToStep(currentStep + 1, 'fwd');
+      }
+
+      function prev() {
+        if (currentStep > 1) goToStep(currentStep - 1, 'back');
+      }
+
+      function selectOption(key, value) {
+        formState[key] = value;
+        markSelection(key);
+        setTimeout(() => goToStep(currentStep + 1, 'fwd'), 350);
+      }
+
+      function submit() {
+        formState.expectativa = expectativaInput.value.trim();
+        console.log('formState:', formState);
+        goToStep(8, 'fwd');
+      }
+
+      /* ---------- Listeners ---------- */
+      form.addEventListener('click', (e) => {
+        const opt = e.target.closest('.opt');
+        if (opt) {
+          const group = opt.closest('[data-key]');
+          if (group) selectOption(group.dataset.key, opt.dataset.value);
+          return;
+        }
+        const nav = e.target.closest('[data-action]');
+        if (!nav) return;
+        const action = nav.dataset.action;
+        if (action === 'next') next();
+        else if (action === 'prev') prev();
+        else if (action === 'submit' || action === 'skip') submit();
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (currentStep === 7) submit();
+      });
+
+      emailInput.addEventListener('input', () => {
+        formState.email = emailInput.value.trim();
+        updateStep1Btn();
+      });
+
+      emailInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (validateStep(1)) next();
+        }
+      });
+
+      // Estado inicial (sem foco automático no carregamento)
+      updateProgress(1);
+      restoreStep(1);
     })();
   </script>
 
