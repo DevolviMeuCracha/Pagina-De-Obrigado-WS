@@ -296,104 +296,141 @@
     }
 
     /* ============================================================
-       MAIN — single fold
+       MAIN
     ============================================================ */
     main {
       flex: 1;
-      display: flex;
-      align-items: center;
-      padding: 32px 0;
     }
 
-    main > .container {
-      width: 100%;
-    }
-
-    .thanks-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      width: 100%;
+    /* Container estreito centralizado */
+    .container-narrow {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
     }
 
     /* ============================================================
-       LEFT — WHATSAPP CTA
+       HERO — centralizado
     ============================================================ */
-    .hero-content {
+    .hero {
+      padding: 80px 0 40px;
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      align-items: flex-start;
+      align-items: center;
     }
 
-    .hero-content h1 {
-      margin: 0;
-      font-size: clamp(2rem, 5.5vw, 3.5rem);
+    .hero .badge {
+      margin-bottom: 22px;
     }
 
-    .hero-content .subhead {
-      max-width: 480px;
-      margin: 0;
+    .hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 700;
+      color: rgba(243, 240, 233, 0.92);
+      background: none;
+      -webkit-text-fill-color: rgba(243, 240, 233, 0.92);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 14px 0;
     }
 
-    .hero-content .subhead strong {
+    .hero .subhead {
+      font-size: 0.9375rem;
+      color: var(--c-text-muted);
+      line-height: 1.6;
+      margin: 0 auto 32px auto;
+      max-width: 440px;
+    }
+
+    .hero .subhead strong {
       color: var(--c-text-primary);
       font-weight: 600;
     }
 
     .cta-block {
+      position: relative;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-      margin-top: 4px;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 360px;
+      height: 100px;
+      background: radial-gradient(ellipse at center, rgba(0, 255, 95, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+      border-radius: 100px;
     }
 
     .cta-microcopy {
-      font-size: 0.875rem;
-      color: var(--c-text-muted);
-      margin: 0;
-      line-height: 1.5;
+      font-size: 0.8125rem;
+      color: rgba(243, 240, 233, 0.5);
       font-style: italic;
+      margin: 0;
     }
 
     /* ============================================================
-       RIGHT — SURVEY
+       SURVEY — fluxo corrido, sem separação visual
     ============================================================ */
-    .survey-col {
-      display: flex;
-      flex-direction: column;
+    .section-survey {
+      padding: 40px 0 80px;
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
     }
 
-    .survey-col .eyebrow {
-      margin: 0 0 10px 0;
-    }
-
-    .survey-title {
-      margin: 0 0 8px 0;
+    .section-survey .eyebrow {
       font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-size: 0.625rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-accent);
       font-weight: 700;
-      line-height: 1.2;
+      opacity: 0.85;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .section-survey h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 3vw, 1.75rem);
+      font-weight: 700;
+      color: var(--c-text-primary);
+      line-height: 1.25;
       letter-spacing: -0.01em;
-      background: linear-gradient(90deg, var(--c-accent) 0%, #F5F1E5 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
+      margin: 0 0 10px 0;
+      background: none;
+      -webkit-text-fill-color: var(--c-text-primary);
     }
 
-    .survey-intro {
-      font-size: 0.9375rem;
-      color: var(--c-text-muted);
-      line-height: 1.5;
-      margin: 0 0 16px 0;
-      max-width: 520px;
+    .section-survey .survey-intro {
+      font-size: 0.875rem;
+      color: rgba(243, 240, 233, 0.55);
+      line-height: 1.6;
+      margin: 0 auto 28px auto;
+      max-width: 400px;
     }
 
-    .survey-intro strong {
+    .section-survey .survey-intro strong {
       color: var(--c-text-primary);
       font-weight: 600;
+    }
+
+    .section-survey .iframe-wrapper {
+      max-width: 480px;
+      margin: 0 auto;
     }
 
     /* ============================================================
@@ -419,7 +456,7 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      padding: 18px 32px;
+      padding: 20px 40px;
       background: linear-gradient(135deg, #00FF5F 0%, #25D366 100%);
       color: #0a1a1c;
       font-family: var(--font-display);
@@ -428,30 +465,18 @@
       text-decoration: none;
       border-radius: 100px;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: pulse-glow 2.5s infinite;
+      box-shadow: 0 0 0 10px rgba(0, 255, 95, 0.1), 0 12px 28px rgba(0, 255, 95, 0.22);
       width: fit-content;
       letter-spacing: 0.01em;
     }
 
     .btn-whatsapp i {
-      font-size: 1.25rem;
+      font-size: 1.375rem;
     }
 
     .btn-whatsapp:hover {
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 12px 32px rgba(0, 255, 95, 0.3);
-    }
-
-    @keyframes pulse-glow {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(0, 255, 95, 0.4);
-      }
-
-      50% {
-        box-shadow: 0 0 0 14px rgba(0, 255, 95, 0);
-      }
+      box-shadow: 0 0 0 12px rgba(0, 255, 95, 0.12), 0 16px 36px rgba(0, 255, 95, 0.3);
     }
 
     /* ============================================================
@@ -475,67 +500,26 @@
        DESKTOP (1024px+)
     ============================================================ */
     @media (min-width: 1024px) {
-      .container {
-        padding: 0 24px;
-      }
-
-      .glass-panel {
-        padding: 40px;
-      }
-
       .glass-panel.iframe-wrapper {
         padding: 8px;
-      }
-
-      .thanks-grid {
-        flex-direction: row;
-        gap: 56px;
-        align-items: center;
-      }
-
-      .hero-content {
-        flex: 0 0 42%;
-      }
-
-      .survey-col {
-        flex: 1;
-      }
-
-      .iframe-wrapper iframe {
-        height: clamp(440px, calc(100vh - 260px), 600px);
-      }
-
-      .subhead {
-        font-size: 1.125rem;
       }
     }
 
     /* ============================================================
-       MOBILE / TABLET (≤1023px)
+       MOBILE (≤767px)
     ============================================================ */
-    @media (max-width: 1023px) {
-      .hero-content {
-        align-items: center;
-        text-align: center;
-      }
-
-      .hero-content .subhead {
-        text-align: center;
-        max-width: none;
-      }
-
-      .cta-block {
-        align-items: center;
+    @media (max-width: 767px) {
+      .hero {
+        padding: 60px 0 32px;
       }
 
       .btn-whatsapp {
-        width: 100%;
-        justify-content: center;
-        max-width: 340px;
+        padding: 18px 32px;
+        font-size: 0.9375rem;
       }
 
-      .survey-col {
-        text-align: center;
+      .section-survey {
+        padding: 32px 0 60px;
       }
     }
 
@@ -557,10 +541,6 @@
         transition: none;
       }
 
-      .btn-whatsapp {
-        animation: none;
-      }
-
       .btn-whatsapp:hover {
         transform: none;
       }
@@ -580,41 +560,40 @@
     </header>
 
     <main>
-      <div class="container">
-        <div class="thanks-grid">
-          <div class="hero-content">
-            <span class="badge badge-accent fadeSlideIn">
-              <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Inscrição confirmada
-            </span>
-            <h1 class="text-gradient fadeSlideIn delay-1">Bem-vindo à sua decisão.</h1>
-            <p class="subhead fadeSlideIn delay-2">
-              É muito importante você estar no <strong>grupo do WhatsApp</strong>. É por lá que eu mando os conteúdos
-              preparatórios e o link de acesso ao vivo.
-            </p>
-            <div class="cta-block fadeSlideIn delay-3">
-              <a href="https://chat.whatsapp.com/FGpryF8eYPZBfXmaWR6Jhu" target="_blank" rel="noopener noreferrer"
-                class="btn-whatsapp">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-                Entrar no grupo agora
-              </a>
-              <p class="cta-microcopy">O canal oficial do workshop. Te vejo lá.</p>
-            </div>
-          </div>
-
-          <div class="survey-col fadeSlideIn delay-3">
-            <span class="eyebrow">Antes de começar · 2 min</span>
-            <h2 class="survey-title">Conta um pouco sobre você</h2>
-            <p class="survey-intro">
-              Quanto mais eu te entender, melhor eu personalizo o workshop. Você sai com o <strong>Guia de Nichos
-                2026</strong> como bônus.
-            </p>
-            <div class="iframe-wrapper glass-panel">
-              <iframe src="https://form.respondi.app/leVfhi3g" title="Questionário do Workshop" loading="lazy">
-              </iframe>
-            </div>
+      <section class="hero">
+        <div class="container container-narrow">
+          <span class="badge badge-accent fadeSlideIn">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Quase lá: só falta 1 etapa
+          </span>
+          <h1 class="fadeSlideIn delay-1">Bem-vindo à sua decisão.</h1>
+          <p class="subhead fadeSlideIn delay-2">
+            Entre agora no <strong>grupo silencioso do WhatsApp</strong>: material complementar e link de acesso serão
+            enviados por lá.
+          </p>
+          <div class="cta-block fadeSlideIn delay-3">
+            <a href="https://chat.whatsapp.com/FGpryF8eYPZBfXmaWR6Jhu" target="_blank" rel="noopener noreferrer"
+              class="btn-whatsapp">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              Entrar no grupo agora
+            </a>
+            <p class="cta-microcopy">Grupo silencioso — também não gostamos de spam.</p>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section class="section-survey">
+        <div class="container container-narrow">
+          <span class="eyebrow fadeSlideIn">Antes de começar · 2 min</span>
+          <h2 class="fadeSlideIn delay-1">Conta um pouco sobre você</h2>
+          <p class="survey-intro fadeSlideIn delay-2">
+            Quanto mais eu te entender, melhor eu personalizo o workshop. Você sai com o <strong>Guia de Nichos
+              2026</strong> como bônus.
+          </p>
+          <div class="iframe-wrapper glass-panel fadeSlideIn delay-3">
+            <iframe src="https://form.respondi.app/leVfhi3g" title="Questionário do Workshop" loading="lazy"></iframe>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 
