@@ -736,42 +736,108 @@
     }
 
     /* ============================================================
-       TELA FINAL (placeholder)
+       TELA FINAL (obrigado)
     ============================================================ */
     .step-final {
       text-align: center;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 0;
+    }
+
+    .success-icon {
+      font-size: 3rem;
+      color: var(--c-secondary);
+      margin-bottom: 20px;
+      animation: successPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes successPop {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      60% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .final-title {
       font-family: var(--font-display);
-      font-size: 1.375rem;
+      font-size: clamp(1.375rem, 3vw, 1.75rem);
       font-weight: 700;
       color: var(--c-text-primary);
-      margin-bottom: 10px;
+      margin: 0 0 12px 0;
+      line-height: 1.25;
     }
 
-    .final-sub {
+    .final-subtitle {
+      font-size: 0.9375rem;
+      color: var(--c-text-muted);
+      line-height: 1.6;
+      margin: 0 0 28px 0;
+      max-width: 400px;
+    }
+
+    .btn-whatsapp-final {
+      width: 100%;
+      max-width: 320px;
+      justify-content: center;
+    }
+
+    .final-divider {
+      width: 100%;
+      max-width: 280px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 32px 0 24px 0;
+    }
+
+    .final-bonus-label {
       font-size: 0.8125rem;
       color: var(--c-text-muted);
-      margin-bottom: 20px;
-      max-width: 340px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 0 0 14px 0;
+      font-family: var(--font-display);
+      font-weight: 600;
     }
 
-    .final-json {
+    .btn-ebook {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: rgba(179, 162, 117, 0.1);
+      color: var(--c-accent);
+      border: 1px solid rgba(179, 162, 117, 0.4);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       width: 100%;
-      text-align: left;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 14px;
-      font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
-      font-size: 0.75rem;
-      color: var(--c-text-muted);
-      white-space: pre-wrap;
-      word-break: break-word;
-      overflow-x: auto;
+      max-width: 320px;
+    }
+
+    .btn-ebook:hover {
+      background: rgba(179, 162, 117, 0.18);
+      border-color: var(--c-accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-ebook i {
+      font-size: 1.125rem;
     }
 
     /* ============================================================
@@ -897,6 +963,14 @@
 
       .btn-spinner {
         animation: none;
+      }
+
+      .success-icon {
+        animation: none;
+      }
+
+      .btn-ebook:hover {
+        transform: none;
       }
     }
   </style>
@@ -1067,11 +1141,33 @@
                 </div>
               </fieldset>
 
-              <!-- Tela 8 — Confirmação simulada (placeholder Sprint 4) -->
+              <!-- Tela 8 — Obrigado final -->
               <div class="step step-final" data-step="8" role="status">
-                <p class="final-title">Resposta registrada! ✓</p>
-                <p class="final-sub">(Esta é uma tela placeholder — será substituída na próxima sprint pelo envio real e tela de obrigado final)</p>
-                <pre class="final-json" id="finalJson"></pre>
+                <div class="success-icon" aria-hidden="true">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <h3 class="final-title">Tudo certo! Recebi suas respostas.</h3>
+
+                <p class="final-subtitle">
+                  Agora falta o passo mais importante: entrar no grupo do WhatsApp. É por lá que mando o link de acesso
+                  e os materiais.
+                </p>
+
+                <a href="https://chat.whatsapp.com/FGpryF8eYPZBfXmaWR6Jhu" target="_blank" rel="noopener noreferrer"
+                  class="btn-whatsapp btn-whatsapp-final">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                  Entrar no grupo agora
+                </a>
+
+                <div class="final-divider" aria-hidden="true"></div>
+
+                <p class="final-bonus-label">Seu bônus de boas-vindas:</p>
+                <a href="https://drive.google.com/file/d/1i2eVLQQs0uLwHDNWV0ZFQqHSX1p_TjPQ/view" target="_blank"
+                  rel="noopener noreferrer" class="btn-ebook">
+                  <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                  Baixar o Guia de Nichos 2026
+                </a>
               </div>
 
             </form>
@@ -1129,7 +1225,6 @@
       const emailInput = document.getElementById('email');
       const expectativaInput = document.getElementById('expectativa');
       const step1Next = document.getElementById('step1Next');
-      const finalJson = document.getElementById('finalJson');
       const submitBtn = document.getElementById('submitBtn');
       const formError = document.getElementById('form-error');
       // Botões da Tela 7 que devem ser travados durante o envio (Enviar, Voltar, Pular)
@@ -1193,7 +1288,6 @@
       function afterShown(n, doFocus) {
         if (n > totalSteps) {
           progressWrap.style.display = 'none';
-          finalJson.textContent = JSON.stringify(formState, null, 2);
           return;
         }
         progressWrap.style.display = '';
