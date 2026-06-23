@@ -443,6 +443,18 @@
       border: 0;
     }
 
+    /* Honeypot anti-bot — fora da tela, não detectável como display:none */
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     /* ============================================================
        FORM SHELL
     ============================================================ */
@@ -1026,6 +1038,12 @@
 
             <form id="surveyForm" class="survey-form" novalidate>
 
+              <!-- Honeypot anti-bot (invisível para humanos) -->
+              <div class="hp-field" aria-hidden="true">
+                <label for="website">Não preencha este campo</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+              </div>
+
               <!-- Tela 1 — E-mail -->
               <fieldset class="step is-active" data-step="1">
                 <legend class="step-title">Qual seu melhor e-mail?</legend>
@@ -1162,8 +1180,8 @@
                 <div class="final-divider" aria-hidden="true"></div>
 
                 <p class="final-bonus-label">Seu bônus de boas-vindas:</p>
-                <a href="https://drive.google.com/file/d/1i2eVLQQs0uLwHDNWV0ZFQqHSX1p_TjPQ/view" target="_blank"
-                  rel="noopener noreferrer" class="btn-ebook">
+                <a href="https://drive.google.com/uc?export=download&id=1i2eVLQQs0uLwHDNWV0ZFQqHSX1p_TjPQ"
+                  target="_blank" rel="noopener noreferrer" class="btn-ebook">
                   <i class="fa-solid fa-book-open" aria-hidden="true"></i>
                   Baixar o Guia de Nichos 2026
                 </a>
@@ -1403,7 +1421,12 @@
         mostrarEstadoEnviando();
         esconderMensagemErro();
 
-        const payload = { ...formState, ...coletarDadosOrigem() };
+        const honeypotValue = (document.getElementById('website') || {}).value || '';
+        const payload = {
+          ...formState,
+          ...coletarDadosOrigem(),
+          website: honeypotValue // honeypot — backend descarta se preenchido
+        };
 
         try {
           const response = await fetch(ENDPOINT_URL, {
