@@ -700,6 +700,42 @@
     }
 
     /* ============================================================
+       MENSAGEM DE ERRO + SPINNER
+    ============================================================ */
+    .form-error {
+      color: #FF6B6B;
+      font-size: 0.875rem;
+      margin: 0 0 16px 0;
+      padding: 12px 16px;
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      border-radius: 10px;
+      line-height: 1.4;
+    }
+
+    .form-error[hidden] {
+      display: none;
+    }
+
+    .btn-spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(10, 26, 28, 0.3);
+      border-top-color: #0a1a1c;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ============================================================
        TELA FINAL (placeholder)
     ============================================================ */
     .step-final {
@@ -857,6 +893,10 @@
 
       .btn-next:hover {
         transform: none;
+      }
+
+      .btn-spinner {
+        animation: none;
       }
     }
   </style>
@@ -1017,11 +1057,12 @@
                   <label for="expectativa" class="sr-only">O que você mais espera desse workshop?</label>
                   <textarea id="expectativa" class="form-textarea" rows="4" placeholder="Sua resposta..."></textarea>
                 </div>
+                <p class="form-error" id="form-error" role="alert" hidden></p>
                 <div class="step-nav">
                   <button type="button" class="btn-back" data-action="prev">Voltar</button>
                   <div class="nav-right">
                     <button type="button" class="btn-back" data-action="skip">Pular</button>
-                    <button type="button" class="btn-next" data-action="submit">Enviar</button>
+                    <button type="button" class="btn-next" data-action="submit" id="submitBtn">Enviar</button>
                   </div>
                 </div>
               </fieldset>
@@ -1058,8 +1099,11 @@
 
     /* ============================================================
        FORM NATIVO MULTI-STEP (Sprint 2 — estrutura visual)
+       + Integração com Apps Script (Sprint 3)
     ============================================================ */
     (function () {
+      const ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbxAnfLRXGMD2olT-wiNV9fiziL2gXEnHWlU24_hVDweplSIvizH7vTotEQzYq9tJ197/exec';
+
       const formState = {
         email: '',
         faixaEtaria: '',
@@ -1073,6 +1117,7 @@
       let currentStep = 1;
       const totalSteps = 7;
       let busy = false;
+      let estaEnviando = false;
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1085,6 +1130,12 @@
       const expectativaInput = document.getElementById('expectativa');
       const step1Next = document.getElementById('step1Next');
       const finalJson = document.getElementById('finalJson');
+      const submitBtn = document.getElementById('submitBtn');
+      const formError = document.getElementById('form-error');
+      // Botões da Tela 7 que devem ser travados durante o envio (Enviar, Voltar, Pular)
+      const sendingLockBtns = Array.from(
+        document.querySelector('.step[data-step="7"]').querySelectorAll('button')
+      );
 
       // Mapa step -> chave do formState (telas single-choice)
       const stepKey = {
@@ -1215,10 +1266,77 @@
         setTimeout(() => goToStep(currentStep + 1, 'fwd'), 350);
       }
 
-      function submit() {
+      /* ---------- Integração com backend ---------- */
+      function coletarDadosOrigem() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          utm_source: params.get('utm_source') || '',
+          utm_medium: params.get('utm_medium') || '',
+          utm_campaign: params.get('utm_campaign') || '',
+          utm_content: params.get('utm_content') || '',
+          utm_term: params.get('utm_term') || '',
+          userAgent: navigator.userAgent || '',
+          referrer: document.referrer || ''
+        };
+      }
+
+      function mostrarMensagemErro(texto) {
+        formError.textContent = texto;
+        formError.hidden = false;
+      }
+
+      function esconderMensagemErro() {
+        formError.hidden = true;
+        formError.textContent = '';
+      }
+
+      function mostrarEstadoEnviando() {
+        sendingLockBtns.forEach(b => { b.disabled = true; });
+        submitBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>Enviando...';
+      }
+
+      function restaurarBotaoEnviar() {
+        sendingLockBtns.forEach(b => { b.disabled = false; });
+        submitBtn.textContent = 'Enviar';
+      }
+
+      async function submit() {
+        // Previne envio duplo
+        if (estaEnviando) return;
+        estaEnviando = true;
+
         formState.expectativa = expectativaInput.value.trim();
-        console.log('formState:', formState);
-        goToStep(8, 'fwd');
+
+        mostrarEstadoEnviando();
+        esconderMensagemErro();
+
+        const payload = { ...formState, ...coletarDadosOrigem() };
+
+        try {
+          const response = await fetch(ENDPOINT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload),
+            redirect: 'follow'
+          });
+
+          const resultado = await response.json();
+
+          if (resultado && resultado.ok) {
+            // Sucesso: avança pra tela de confirmação
+            restaurarBotaoEnviar();
+            goToStep(8, 'fwd');
+          } else {
+            mostrarMensagemErro((resultado && resultado.erro) || 'Não foi possível enviar. Tente novamente.');
+            restaurarBotaoEnviar();
+          }
+        } catch (erro) {
+          console.error('Erro ao enviar:', erro);
+          mostrarMensagemErro('Erro de conexão. Verifique sua internet e tente novamente.');
+          restaurarBotaoEnviar();
+        } finally {
+          estaEnviando = false;
+        }
       }
 
       /* ---------- Listeners ---------- */
