@@ -1430,7 +1430,8 @@
         const payload = {
           ...formState,
           ...coletarDadosOrigem(),
-          website: honeypotValue // honeypot — backend descarta se preenchido
+          website: honeypotValue, // honeypot — backend descarta se preenchido
+          origem: 'obrigado' // identifica que veio da página de obrigado pós-compra
         };
 
         try {
